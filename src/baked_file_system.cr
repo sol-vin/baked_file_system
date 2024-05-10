@@ -184,6 +184,8 @@ module BakedFileSystem
 
     %files_size_ante = @@files.size
 
+    {% puts "Baking path #{path} @ #{dir}" %}
+
     {{ run("./loader", path, dir) }}
 
     {% unless allow_empty %}
