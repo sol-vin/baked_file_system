@@ -41,6 +41,8 @@ module BakedFileSystem
     
     # Returns the path in the virtual file system.
     getter path : String
+    getter original_path : String
+    
 
     # Returns the size of this virtual file.
     getter size : Int32
