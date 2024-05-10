@@ -27,7 +27,7 @@ module BakedFileSystem
       files.each do |path|
         io << "bake_file BakedFileSystem::BakedFile.new(\n"
         io << "  path:            " << Path[path[root_path_length..]].to_posix.to_s.dump << ",\n"
-        io << " original_path:   " << path << ",\n"
+        io << " original_path:   " << Path[path].to_posix.to_s.dump << ",\n"
         io << "  dir:            " << root_folder << ",\n"
     
         io << "  size:            " << File.info(path).size << ",\n"
