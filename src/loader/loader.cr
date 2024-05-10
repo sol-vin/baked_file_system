@@ -27,6 +27,8 @@ module BakedFileSystem
       files.each do |path|
         io << "bake_file BakedFileSystem::BakedFile.new(\n"
         io << "  path:            " << Path[path[root_path_length..]].to_posix.to_s.dump << ",\n"
+        io << "  dir:            " << Path[root_path].to_posix.to_s.dump << ",\n"
+    
         io << "  size:            " << File.info(path).size << ",\n"
         compressed = path.ends_with?("gz")
 
