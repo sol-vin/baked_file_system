@@ -196,6 +196,6 @@ module BakedFileSystem
 
   # Creates a `BakedFile` at *path* with content *content* and adds it to this file system.
   def bake_file(path : String, content)
-    bake_file BakedFileSystem::BakedFile.new(path, content.size, true, content.to_slice)
+    bake_file BakedFileSystem::BakedFile.new(path, "./", content.size, true, content.to_slice)
   end
 end
