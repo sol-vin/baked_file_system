@@ -42,13 +42,15 @@ module BakedFileSystem
     # Returns the path in the virtual file system.
     getter path : String
 
+    getter original_path : String
+    
     # Returns the size of this virtual file.
     getter size : Int32
 
     # Returns whether this file is compressed. If not, it is decompressed on read.
     getter? compressed : Bool
 
-    def initialize(@path, @dir, @size, @compressed, @slice : Bytes)
+    def initialize(@path, @original_path, @dir, @size, @compressed, @slice : Bytes)
       @path = "/" + @path unless @path.starts_with? '/'
       @memory_io = IO::Memory.new(@slice)
       @wrapped_io = compressed? ? @memory_io : Compress::Gzip::Reader.new(@memory_io)
