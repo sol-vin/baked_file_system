@@ -7,7 +7,7 @@ module BakedFileSystem
     class Error < Exception
     end
 
-    def self.load(io, root_path, root_folder)
+    def self.load(io, root_path, original_path, root_folder)
       if !File.exists?(root_path)
         raise Error.new "path does not exist: #{root_path}"
       elsif !File.directory?(root_path)
@@ -27,7 +27,7 @@ module BakedFileSystem
       files.each do |path|
         io << "bake_file BakedFileSystem::BakedFile.new(\n"
         io << "  path:            " << Path[path[root_path_length..]].to_posix.to_s.dump << ",\n"
-        io << "  original_path:   " << Path[path].to_posix.to_s.dump << ",\n"
+        io << "  original_path:   \"" << original_path << "\",\n"
         io << "  dir:            \"" << root_folder << "\",\n"
     
         io << "  size:            " << File.info(path).size << ",\n"
